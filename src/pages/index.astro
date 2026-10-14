@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/home.css';
+import { getProductos } from '../lib/woo';
+import { clp } from '../data/productos';
+
+const { items, fuente } = await getProductos();
+const destacados = items.slice(0, 12);
+---
+<Base title="Óptica City · Anteojos y atención visual en Concepción">
+<div id="app">
+<div class="ann"><div class="wrap"><span>Atención visual con Tecnólogo Médico Optómetra · Lincoyan 368, Concepción</span><a href="https://wa.me/56941603654" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Óptica City, inicio"><img src="/img/logo-opticacity.png" alt="Óptica City" width="392" height="313"></a>
+    <ul class="nav" id="nav"></ul>
+    <div class="tools">
+      <button class="ib" type="button" aria-label="Buscar"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+      <button class="ib" type="button" aria-label="Mi cuenta"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button>
+      <button class="ib" type="button" aria-label="Lista de deseos"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+      <button class="ib" type="button" aria-label="Carrito"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" id="badge" hidden>0</span></button>
+      <button class="ib menu" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="slider" id="slider" aria-roledescription="carrusel" aria-label="Destacados">
+    <div id="slides"></div>
+    <div class="ctrl"><div class="wrap">
+      <button class="arrow" type="button" id="prev" aria-label="Anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="dots" id="dots"></div>
+      <button class="arrow" type="button" id="next" aria-label="Siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <button class="arrow" type="button" id="pause" aria-label="Pausar presentación" style="margin-left:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="pauseIc"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
+    </div></div>
+  </section>
+
+  <section class="strip" aria-label="Por qué Óptica City"><div class="wrap">
+    <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><div><b>Atención visual</b><span>Con Tecnólogo Médico Optómetra</span></div></div>
+    <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><div><b>Contactología</b><span>Nuestra especialidad</span></div></div>
+    <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3z"/></svg><div><b>Modelos exclusivos</b><span>Para mujer y hombre</span></div></div>
+    <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg><div><b>Centro de Concepción</b><span>Lincoyan 368</span></div></div>
+  </div></section>
+
+  <section class="wrap sec" aria-label="Categorías">
+    <div class="head c"><span class="label">Encuentra tu estilo</span><h2>Anteojos hechos para ti</h2></div>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="wrap sec" id="productos" aria-label="Anteojos recientes">
+    <div class="head"><div><span class="label">Catálogo</span><h2>Anteojos recientes</h2></div><a class="more" href="#productos">Ver todos</a></div>
+    <div class="car">
+      <button class="nv l" type="button" aria-label="Anterior" data-dir="-1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="rail" id="rail" tabindex="0" aria-label="Carrusel de anteojos">
+        {destacados.map((p) => (
+          <article class="card">
+            <a class="ph" href={`/producto/${p.slug}`} aria-label={`Ver ${p.name}`}>
+              {(p.images[0] ?? Object.values(p.colorImages ?? {})[0]?.[0]) ? <img class="real" src={p.images[0] ?? Object.values(p.colorImages ?? {})[0]?.[0]} alt={p.name} loading="lazy" /> : <span class="noimg" aria-hidden="true"></span>}
+            </a>
+            <button class="fav" type="button" aria-pressed="false" aria-label={`Guardar ${p.name} en la lista de deseos`}><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+            <h3>{p.name}</h3>
+            <span class={p.price ? 'price' : 'price q'}>{p.price ? clp(p.price) : 'Consultar precio'}</span>
+            <a class="add" href={`/producto/${p.slug}`}>Ver y personalizar</a>
+          </article>
+        ))}
+      </div>
+      <button class="nv r" type="button" aria-label="Siguiente" data-dir="1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    {fuente === 'muestra' && import.meta.env.DEV && <p class="note">Modo estático: productos de muestra (src/data/productos.ts).</p>}
+  </section>
+
+  <section class="sec" id="configurador" aria-label="Arma tus anteojos">
+    <div class="band">
+      <div class="pic"><img id="bandImg" alt="Mujer mirando una vitrina de armazones"></div>
+      <div class="tx">
+        <span class="label">Personaliza</span>
+        <h2>Arma tus anteojos a tu manera</h2>
+        <p>Elige el color del marco, el tipo y color de los cristales y los tratamientos. Ve el precio al instante y súbenos tu receta: nuestro optómetra la revisa antes de preparar tus lentes.</p>
+        <ul class="chips"><li>Color de marco</li><li>Color de cristales</li><li>Filtro luz azul</li><li>Receta y DP</li></ul>
+        <a class="btn pink" href="#configurador">Personalizar ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec glow soft" id="cristales" aria-label="Cristales">
+    <div class="head c"><span class="label">Cristales</span><h2>Cristales para cada necesidad</h2><p>Desde un cristal simple hasta tratamientos para pantallas y sol.</p></div>
+    <div class="lens" id="lens"></div>
+  </section>
+
+  <section class="wrap sec" id="galeria" aria-label="Óptica City y tú">
+    <div class="head c"><span class="label">Comunidad</span><h2>Óptica City &amp; tú</h2><p>Estilos que nos inspiran, en Instagram @opticacitycl.</p></div>
+    <div class="gal" id="gal"></div>
+    <div class="center"><a class="btn dark" href="https://www.instagram.com/opticacitycl/" target="_blank" rel="noopener noreferrer">Ver más en Instagram</a></div>
+  </section>
+
+  <section class="wrap trust glow" id="nosotros" aria-label="Sobre Óptica City">
+    <span class="label">Nosotros</span>
+    <h2>Anteojos con estilo y atención profesional</h2>
+    <p>Nuestro equipo está formado por un Tecnólogo Médico Optómetra que entrega atención visual y óptica, con especialidad en contactología, y un equipo de ventas con amplia experiencia. Detrás de todo está su fundadora, que hizo posible este sueño y sigue aprendiendo junto con los cambios tecnológicos del rubro.</p>
+  </section>
+
+  <section class="sec" aria-label="Novedades por correo" style="padding-top:110px">
+    <div class="news">
+      <div class="pic"><img id="newsImg" alt="Mujer con anteojos de sol frente a un fondo turquesa"></div>
+      <div class="tx">
+        <span class="label">Únete</span>
+        <h2>Recibe novedades de Óptica City</h2>
+        <p>Nuevos modelos y avisos de la tienda, directo a tu correo.</p>
+        <form class="nl" id="nl" novalidate>
+          <label class="sr" for="mail">Correo electrónico</label>
+          <input id="mail" type="email" placeholder="Tu correo electrónico" autocomplete="email">
+          <button class="btn pink" type="submit">Suscribirme</button>
+        </form>
+        <div class="msg" id="msg" role="status"></div>
+        <div class="soc">
+          <a href="https://www.facebook.com/%C3%93ptica-City-107521397624082/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.instagram.com/opticacitycl/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.500" cy="6.500" r=".6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><h4>Óptica City</h4><a href="#nosotros">Quiénes somos</a><a href="#contacto">Contacto</a><a href="#productos">Productos</a></div>
+      <div><h4>Ayuda</h4><a href="#configurador">Cómo hacer tu pedido</a><a href="#configurador">Tu receta</a><a href="#configurador">Distancia pupilar (DP)</a><a href="#cristales">Tipos de cristales</a></div>
+      <div id="contacto"><h4>Visítanos</h4><p>Lincoyan 368</p><p>Concepción, Chile</p><p>+56 9 4160 3654</p></div>
+      <div><h4>Contacto</h4><a href="https://wa.me/56941603654" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.instagram.com/opticacitycl/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/%C3%93ptica-City-107521397624082/" target="_blank" rel="noopener noreferrer">Facebook</a></div>
+    </div>
+    <div class="legal"><span>© Óptica City. Todos los derechos reservados · Sitio diseñado por diseñopaginas</span><span>Fotografías: <a href="https://www.freepik.com" target="_blank" rel="noopener noreferrer">Freepik</a></span></div>
+  </div>
+</footer>
+</div>
+<script>import '../scripts/home.js';</script>
+</Base>

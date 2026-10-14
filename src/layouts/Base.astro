@@ -1,0 +1,35 @@
+---
+interface Props { title: string; description?: string }
+const { title, description = 'Óptica City: anteojos, cristales y contactología en Concepción.' } = Astro.props;
+---
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/img/logo-opticacity.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script is:inline>
+      // Prueba de encabezado: ?header=azul o ?header=blanco (se recuerda durante la sesión)
+      (function () {
+        var v = new URLSearchParams(location.search).get('header');
+        try { if (v) sessionStorage.setItem('hdr', v); else v = sessionStorage.getItem('hdr'); } catch (e) {}
+        var h = document.querySelector('.top');
+        if (h) {
+          var tick = false;
+          var upd = function () { h.classList.toggle('scrolled', window.scrollY > 24); tick = false; };
+          window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+          upd();
+        }
+        if (h && v === 'azul') { h.classList.add('azul'); document.documentElement.classList.add('hdr-azul'); }
+      })();
+    </script>
+  </body>
+</html>

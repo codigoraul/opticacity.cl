@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import { clp } from '../../data/productos';
+import { getProductos } from '../../lib/woo';
+import { cristales } from '../../data/cristales';
+import '../../styles/ficha.css';
+
+export async function getStaticPaths() {
+  const { items } = await getProductos();
+  return items.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+const { product } = Astro.props;
+---
+<Base title={`${product.name} · Óptica City`}>
+<div class="ann">Atención visual con Tecnólogo Médico Optómetra · Lincoyan 368, Concepción</div>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/" aria-label="Óptica City, inicio"><img src="/img/logo-opticacity.png" alt="Óptica City" width="392" height="313"></a>
+  <nav class="nav" aria-label="Principal"><a href="#">Anteojos</a><a href="#">Anteojos de sol</a><a href="#">Cristales</a><a href="#">Contactología</a><a href="#">Nosotros</a></nav>
+  <div class="tools">
+    <button class="ib" type="button" aria-label="Buscar"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    <button class="ib" type="button" aria-label="Lista de deseos"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+    <button class="ib" type="button" id="cartBtn" aria-label="Abrir carrito"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" id="badge" hidden>0</span></button>
+  </div>
+</div></header>
+
+<main class="wrap glow soft">
+  <div class="crumbs"><a href="/">Inicio</a><span>/</span><a href="#">Anteojos</a><span>/</span>{product.name}</div>
+  <div class="pdp">
+    <section class="gal" aria-label="Fotos del producto">
+      <div class="main"><img id="mainImg" alt=""><span class="tag" id="tag">Negro</span></div>
+      <div class="thumbs" id="thumbs"></div>
+      <p class="note">Fotos referenciales. Cada color del armazón mostrará su propia fotografía de producto.</p>
+    </section>
+
+    <section class="info" aria-label="Configura tus anteojos">
+      <span class="label">Armazón</span>
+      <h1>{product.name}</h1>
+      <p class="sku">Código {product.code} · {product.category}</p>
+      <div class="price"><b id="price">{product.price ? clp(product.price) : 'Consultar precio'}</b><small>Precio final con tus opciones · IVA incluido</small></div>
+      <p class="lead">Configura tu armazón, elige el cristal y agrega tu receta. El precio se actualiza al instante y el optómetra revisa tu receta antes de fabricar.</p>
+
+      <fieldset class="step"><legend><i>01</i>Color del armazón<em id="colorName">Negro</em></legend><div class="body"><div class="sw" id="colors"></div></div></fieldset>
+
+      <fieldset class="step"><legend><i>02</i>Material<em id="sizeName"></em></legend><div class="body">
+        <div class="chips" id="sizes"></div>
+      </div></fieldset>
+
+      <fieldset class="step"><legend><i>03</i>Receta</legend><div class="body">
+        <div class="opts" id="lens"></div>
+        <p class="hint" id="rxHint">Después de tu compra te escribiremos por WhatsApp para recibir tu receta. No fabricamos los cristales hasta tenerla.</p>
+      </div></fieldset>
+
+      <fieldset class="step" id="glassStep"><legend><i>04</i>Tipo de cristal</legend><div class="body"><div class="opts" id="glass"></div></div></fieldset>
+
+      <div class="sum" aria-live="polite">
+        <h3>Tu configuración</h3>
+        <ul id="lines"></ul>
+        <div class="tot"><span>Total</span><b id="total">{product.price ? clp(product.price) : 'Consultar precio'}</b></div>
+        <button class="btn" type="button" id="add">Agregar al carrito</button>
+        <button class="btn ghost" type="button" id="wa">Consultar por WhatsApp</button>
+      </div>
+      <ul class="perks">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Receta revisada por un Tecnólogo Médico Optómetra</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Despacho a todo Chile o retiro en tienda, Lincoyan 368</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></svg>Ajuste y control en tienda incluidos</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer class="foot"><div class="wrap"><span>© Óptica City · Lincoyan 368, Concepción · +56 9 4160 3654</span><span>Sitio diseñado por diseñopaginas.cl · Fotografías: Freepik</span></div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="Carrito" inert>
+  <header><h2>Tu carrito</h2><button class="ib" type="button" id="closeCart" aria-label="Cerrar carrito"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="items" id="items"></div>
+  <footer><div class="tot"><span>Subtotal</span><b id="sub">$0</b></div><button class="btn" type="button" id="pay">Ir a pagar</button></footer>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<script type="application/json" id="product-data" set:html={JSON.stringify({ ...product, cristales })} />
+<script>import '../../scripts/ficha.js';</script>
+</Base>
