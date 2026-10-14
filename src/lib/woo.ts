@@ -60,9 +60,9 @@ function mapear(p: StoreProduct): Producto {
 
 // Fotos de muestra (solo lentes) para productos que aún no tienen imagen en WordPress.
 const FOTOS_MUESTRA = [
-  ['/img/yh101-col01.jpg', '/img/yh101-front.jpg'],
-  ['/img/yh101-col04.jpg', '/img/yh101-front.jpg'],
-  ['/img/yh101-col05.jpg', '/img/yh101-front.jpg'],
+  [import.meta.env.BASE_URL + 'img/yh101-col01.jpg', import.meta.env.BASE_URL + 'img/yh101-front.jpg'],
+  [import.meta.env.BASE_URL + 'img/yh101-col04.jpg', import.meta.env.BASE_URL + 'img/yh101-front.jpg'],
+  [import.meta.env.BASE_URL + 'img/yh101-col05.jpg', import.meta.env.BASE_URL + 'img/yh101-front.jpg'],
 ];
 const conFotos = (items: Producto[]) =>
   items.map((p, i) => (p.images.length || Object.keys(p.colorImages ?? {}).length ? p : { ...p, images: FOTOS_MUESTRA[i % FOTOS_MUESTRA.length], muestra: true }));

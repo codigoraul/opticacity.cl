@@ -14,7 +14,7 @@ const { product } = Astro.props;
 <Base title={`${product.name} · Óptica City`}>
 <div class="ann">Atención visual con Tecnólogo Médico Optómetra · Lincoyan 368, Concepción</div>
 <header class="top"><div class="wrap">
-  <a class="logo" href="/" aria-label="Óptica City, inicio"><img src="/img/logo-opticacity.png" alt="Óptica City" width="392" height="313"></a>
+  <a class="logo" href={import.meta.env.BASE_URL} aria-label="Óptica City, inicio"><img src={`${import.meta.env.BASE_URL}img/logo-opticacity.png`} alt="Óptica City" width="392" height="313"></a>
   <nav class="nav" aria-label="Principal"><a href="#">Anteojos</a><a href="#">Anteojos de sol</a><a href="#">Cristales</a><a href="#">Contactología</a><a href="#">Nosotros</a></nav>
   <div class="tools">
     <button class="ib" type="button" aria-label="Buscar"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
@@ -24,7 +24,7 @@ const { product } = Astro.props;
 </div></header>
 
 <main class="wrap glow soft">
-  <div class="crumbs"><a href="/">Inicio</a><span>/</span><a href="#">Anteojos</a><span>/</span>{product.name}</div>
+  <div class="crumbs"><a href={import.meta.env.BASE_URL}>Inicio</a><span>/</span><a href="#">Anteojos</a><span>/</span>{product.name}</div>
   <div class="pdp">
     <section class="gal" aria-label="Fotos del producto">
       <div class="main"><img id="mainImg" alt=""><span class="tag" id="tag">Negro</span></div>

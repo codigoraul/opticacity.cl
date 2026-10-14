@@ -1,5 +1,6 @@
 (function(){
-  var IMG={"g1": "/img/g1.jpg", "g2": "/img/g2.jpg", "g3": "/img/g3.jpg", "g4": "/img/g4.jpg", "hero1": "/img/hero1.jpg", "hero2": "/img/hero2.jpg", "hero3": "/img/hero3.jpg", "hombre": "/img/hombre.jpg", "mujer": "/img/mujer.jpg", "sol": "/img/sol.jpg", "tienda1": "/img/tienda1.jpg", "tienda2": "/img/tienda2.jpg"};
+  var B=import.meta.env.BASE_URL;
+  var IMG={"g1": B+"img/g1.jpg", "g2": B+"img/g2.jpg", "g3": B+"img/g3.jpg", "g4": B+"img/g4.jpg", "hero1": B+"img/hero1.jpg", "hero2": B+"img/hero2.jpg", "hero3": B+"img/hero3.jpg", "hombre": B+"img/hombre.jpg", "mujer": B+"img/mujer.jpg", "sol": B+"img/sol.jpg", "tienda1": B+"img/tienda1.jpg", "tienda2": B+"img/tienda2.jpg"};
   var $=function(s){return document.querySelector(s)};
   var arrow=function(d){return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>'};
 

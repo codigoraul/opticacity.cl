@@ -1,5 +1,6 @@
+var B=import.meta.env.BASE_URL;
 var P=JSON.parse(document.getElementById('product-data').textContent);
-var IMG={"g3":"/img/g3.jpg","hero1":"/img/hero1.jpg","hero2":"/img/hero2.jpg","mujer":"/img/mujer.jpg","tienda1":"/img/tienda1.jpg","tienda2":"/img/tienda2.jpg","hombre":"/img/hombre.jpg"};
+var IMG={"g3":B+"img/g3.jpg","hero1":B+"img/hero1.jpg","hero2":B+"img/hero2.jpg","mujer":B+"img/mujer.jpg","tienda1":B+"img/tienda1.jpg","tienda2":B+"img/tienda2.jpg","hombre":B+"img/hombre.jpg"};
 var $=function(s){return document.querySelector(s)};
 function clp(n){return '$'+String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
 function el(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild}
@@ -17,7 +18,7 @@ function imgsFor(c){
   /* muestra: lentes solos (vista de este color y vista frontal) y una sola foto con modelo */
   var k=MUESTRA_COLOR[c.id]||'col01';
   var i=COLORS.indexOf(c);var f=FALL[(i<0?0:i)%FALL.length];
-  return [{src:'/img/yh101-'+k+'.jpg',p:'50% 50%'},{src:'/img/yh101-front.jpg',p:'50% 50%'},{src:IMG[f.imgs[0]],p:f.pos[0]}];
+  return [{src:B+'img/yh101-'+k+'.jpg',p:'50% 50%'},{src:B+'img/yh101-front.jpg',p:'50% 50%'},{src:IMG[f.imgs[0]],p:f.pos[0]}];
 }
 
 /* Opciones del producto: salen de los atributos de WooCommerce (color, material, uso y tipo de cristal) */
