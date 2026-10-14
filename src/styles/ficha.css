@@ -148,6 +148,7 @@ body.open .cart{transform:none}
 
 .foot{background:var(--soft);border-top:1px solid var(--line);padding:32px 0;font-size:14px;color:var(--muted)}
 .foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.foot a{text-decoration:underline;text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* fondo con resplandor suave (azul arriba izquierda, rosado abajo derecha); se usa solo en algunas secciones */
