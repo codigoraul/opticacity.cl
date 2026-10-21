@@ -310,3 +310,21 @@ html.hdr-azul .ann{background:var(--azul-claro);color:#fff}
 [data-rv="img"].in img{transform:none}
 
 @media (prefers-reduced-motion:reduce){.w>span,[data-rv],[data-rv] img{transform:none!important;opacity:1!important;clip-path:none!important}.copy .label,.copy p,.copy .row{opacity:1}}
+
+/* Banner promocional (pendón): ilustración 50% + texto, fondo rosado de la marca */
+.promo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-top:88px;background:#F5C6DD;color:#1F193F;overflow:hidden}
+.promo .pic{display:flex;align-items:flex-end;justify-content:flex-end;padding:48px clamp(16px,4vw,64px) 0 0}
+.promo .arco{width:min(100%,440px);border-radius:220px 220px 0 0;overflow:hidden;background:rgba(255,255,255,.34);padding-top:64px}
+.promo .arco img{display:block;width:100%;height:auto}
+.promo .tx{padding:clamp(32px,6vw,84px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6px}
+.promo .kick{margin:0;font-weight:600;font-size:clamp(18px,1.9vw,27px);line-height:1.12;letter-spacing:-.01em;text-transform:uppercase}
+.promo .kick i{font-style:normal;font-weight:400}
+.promo .kick sup{font-size:.5em;vertical-align:top}
+.promo .desde{margin:18px 0 0;font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase}
+.promo .precio{margin:0;font-weight:300;font-size:clamp(48px,5.6vw,84px);line-height:1;letter-spacing:-.03em}
+.promo .tags{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0}
+.promo .tags li{border:1px solid #1F193F;border-radius:999px;padding:7px 16px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.promo .nota{margin:14px 0 22px;font-size:13px;font-weight:300;letter-spacing:.04em}
+.btn.navy{background:#1F193F;color:#fff;border-color:#1F193F}
+.btn.navy:hover{background:transparent;color:#1F193F}
+@media (max-width:860px){.promo{grid-template-columns:minmax(0,1fr)}.promo .pic{justify-content:center}.promo .pic{padding-right:0}.promo .arco{width:min(78%,380px)}}
