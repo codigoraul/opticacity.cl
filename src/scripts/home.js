@@ -10,8 +10,9 @@
   var menu=[
     {t:'Anteojos',s:['Todos los anteojos','Mujer','Hombre','En oferta','Anteojos recientes']},
     {t:'Anteojos de sol',s:['Todos','Mujer','Hombre','Graduados']},
-    {t:'Cristales',s:['Monofocales','Bifocales','Progresivos','Filtro luz azul','Fotocromáticos']},
-    {t:'Nosotros',a:B+'nosotros/'}
+    {t:'Tecnología',a:B+'tecnologia/'},
+    {t:'Nosotros',a:B+'nosotros/'},
+    {t:'Contacto',a:B+'contacto/'}
   ];
   $('#nav').innerHTML=menu.map(function(m){
     if(m.a)return '<li><a href="'+m.a+'">'+m.t+'</a></li>';

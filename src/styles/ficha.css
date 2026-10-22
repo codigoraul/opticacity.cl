@@ -146,9 +146,6 @@ body.open .cart{transform:none}
 .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--deep);color:#fff;padding:12px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:all .25s;z-index:80;max-width:calc(100% - 32px)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
-.foot{background:var(--soft);border-top:1px solid var(--line);padding:32px 0;font-size:14px;color:var(--muted)}
-.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
-.foot a{text-decoration:underline;text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* fondo con resplandor suave (azul arriba izquierda, rosado abajo derecha); se usa solo en algunas secciones */
@@ -190,3 +187,8 @@ html.hdr-azul .ann{background:var(--azul-claro);color:#fff}
   .top.scrolled .nav>li>a,.top.scrolled .nav>li>button{min-height:66px}
 }
 @media (min-width:960px) and (max-width:1020px){.top.scrolled .wrap{min-height:66px}.top.scrolled .logo img{height:60px}}
+
+.ann-soc{display:inline-flex;gap:6px;align-items:center}
+.ann .ann-soc a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;text-decoration:none;color:inherit;transition:background .2s}
+.ann .ann-soc a:hover{background:rgba(255,255,255,.18)}
+.ann{display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:center;align-items:center}

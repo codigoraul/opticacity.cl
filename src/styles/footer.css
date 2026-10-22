@@ -1,0 +1,24 @@
+/* footer */
+.site-foot{background:#001942;color:#fff;margin-top:0;font-size:16px;border:0;padding:0}
+.site-foot .fcta{background:#003EA1}
+.site-foot .fcta-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:26px}
+.site-foot .fcta p{margin:0;font-size:clamp(18px,2vw,24px);font-weight:300;color:#fff}
+.site-foot .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 30px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid transparent;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.site-foot .btn.white{background:#fff;color:#001942;border-color:#fff}
+.site-foot .btn.white:hover{background:#FFCAE2;border-color:#FFCAE2}
+.site-foot .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-block:60px 36px}
+@media (max-width:900px){.site-foot .foot{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.site-foot .foot{grid-template-columns:minmax(0,1fr)}}
+.site-foot .foot h4{font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;color:#FFCAE2}
+.site-foot .foot a,.site-foot .foot p{display:flex;align-items:center;min-height:34px;margin:0;color:rgba(255,255,255,.78);font-size:16px;font-weight:300}
+.site-foot .foot a:hover{color:#fff}
+.site-foot .fbrand img{display:block;height:auto;width:98px;margin-bottom:16px}
+.site-foot .fbrand p{display:block;min-height:0;max-width:34ch;line-height:1.6;margin-bottom:18px}
+.site-foot .soc{display:flex;gap:10px}
+.site-foot .foot .soc a{width:40px;height:40px;min-height:0;justify-content:center;border:1px solid rgba(255,255,255,.3);border-radius:50%;color:#fff;transition:background .2s,border-color .2s}
+.site-foot .foot .soc a:hover{background:#003EA1;border-color:#003EA1}
+.site-foot .legal{border-top:1px solid rgba(255,255,255,.16);padding-block:20px;font-size:13px;color:rgba(255,255,255,.65);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+.site-foot .legal a{text-decoration:underline;text-underline-offset:3px;color:#fff}
+.site-foot .wrap{width:min(1280px,calc(100% - 48px));margin-inline:auto;display:block}
+.site-foot .fcta-in{display:flex}
+.site-foot .legal{display:flex}
