@@ -38,7 +38,6 @@ const destacados = items.slice(0, 12);
 
   <section class="strip" aria-label="Por qué Óptica City"><div class="wrap">
     <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><div><b>Atención visual</b><span>Con Tecnólogo Médico Optómetra</span></div></div>
-    <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><div><b>Contactología</b><span>Nuestra especialidad</span></div></div>
     <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3z"/></svg><div><b>Modelos exclusivos</b><span>Para mujer y hombre</span></div></div>
     <div class="st"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg><div><b>Centro de Concepción</b><span>Lincoyan 368</span></div></div>
   </div></section>
@@ -70,6 +69,23 @@ const destacados = items.slice(0, 12);
     {fuente === 'muestra' && import.meta.env.DEV && <p class="note">Modo estático: productos de muestra (src/data/productos.ts).</p>}
   </section>
 
+  <section class="promo" id="promo" aria-label="Examen visual, receta y lentes ópticos">
+    <div class="pic"><div class="arco"><img src={`${import.meta.env.BASE_URL}img/pendon-ilustracion.svg`} alt="Ilustración de una mujer con sombrero blanco y lentes de sol" loading="lazy" width="1400" height="1313" /></div></div>
+    <div class="tx">
+      <p class="kick">Examen visual <i>+</i> Receta <i>+</i> Lentes ópticos<sup>*</sup></p>
+      <p class="desde">Desde</p>
+      <p class="precio">$49.990</p>
+      <ul class="tags" aria-label="Tipos de lente"><li>Descanso</li><li>Monofocal</li><li>Presbicie</li></ul>
+      <p class="nota">*Cristales orgánicos antirreflejo, receta 4/2.</p>
+      <a class="btn navy" href="https://wa.me/56941603654?text=Hola%2C%20quiero%20agendar%20un%20examen%20visual" target="_blank" rel="noopener noreferrer">Agendar examen visual</a>
+    </div>
+  </section>
+
+  <section class="wrap sec glow soft" id="cristales" aria-label="Cristales">
+    <div class="head c"><span class="label">Cristales</span><h2>Cristales para cada necesidad</h2><p>Desde un cristal simple hasta tratamientos para pantallas y sol.</p></div>
+    <div class="lens" id="lens"></div>
+  </section>
+
   <section class="sec" id="configurador" aria-label="Arma tus anteojos">
     <div class="band">
       <div class="pic"><img id="bandImg" alt="Mujer mirando una vitrina de armazones"></div>
@@ -83,61 +99,12 @@ const destacados = items.slice(0, 12);
     </div>
   </section>
 
-  <section class="wrap sec glow soft" id="cristales" aria-label="Cristales">
-    <div class="head c"><span class="label">Cristales</span><h2>Cristales para cada necesidad</h2><p>Desde un cristal simple hasta tratamientos para pantallas y sol.</p></div>
-    <div class="lens" id="lens"></div>
-  </section>
-
-  <section class="promo" id="promo" aria-label="Examen visual, receta y lentes ópticos">
-    <div class="pic"><div class="arco"><img src={`${import.meta.env.BASE_URL}img/pendon-ilustracion.svg`} alt="Ilustración de una mujer con sombrero blanco y lentes de sol" loading="lazy" width="1400" height="1313" /></div></div>
-    <div class="tx">
-      <p class="kick">Examen visual <i>+</i> Receta <i>+</i> Lentes ópticos<sup>*</sup></p>
-      <p class="desde">Desde</p>
-      <p class="precio">$49.990</p>
-      <ul class="tags" aria-label="Tipos de lente"><li>Descanso</li><li>Monofocal</li><li>Presbicie</li></ul>
-      <p class="nota">*Cristales orgánicos antirreflejo, receta 4/2.</p>
-      <a class="btn navy" href="https://wa.me/56941603654?text=Hola%2C%20quiero%20agendar%20un%20examen%20visual" target="_blank" rel="noopener noreferrer">Agendar examen visual</a>
-    </div>
-  </section>
-
-  <section class="wrap sec" id="galeria" aria-label="Óptica City y tú">
-    <div class="head c"><span class="label">Comunidad</span><h2>Óptica City &amp; tú</h2><p>Estilos que nos inspiran, en Instagram @opticacitycl.</p></div>
-    <div class="gal" id="gal"></div>
-    <div class="center"><a class="btn dark" href="https://www.instagram.com/opticacitycl/" target="_blank" rel="noopener noreferrer">Ver más en Instagram</a></div>
-  </section>
-
-  <section class="wrap trust glow" id="nosotros" aria-label="Sobre Óptica City">
-    <span class="label">Nosotros</span>
-    <h2>Anteojos con estilo y atención profesional</h2>
-    <p>Nuestro equipo está formado por un Tecnólogo Médico Optómetra que entrega atención visual y óptica, con especialidad en contactología, y un equipo de ventas con amplia experiencia. Detrás de todo está su fundadora, que hizo posible este sueño y sigue aprendiendo junto con los cambios tecnológicos del rubro.</p>
-  </section>
-
-  <section class="sec" aria-label="Novedades por correo" style="padding-top:110px">
-    <div class="news">
-      <div class="pic"><img id="newsImg" alt="Mujer con anteojos de sol frente a un fondo turquesa"></div>
-      <div class="tx">
-        <span class="label">Únete</span>
-        <h2>Recibe novedades de Óptica City</h2>
-        <p>Nuevos modelos y avisos de la tienda, directo a tu correo.</p>
-        <form class="nl" id="nl" novalidate>
-          <label class="sr" for="mail">Correo electrónico</label>
-          <input id="mail" type="email" placeholder="Tu correo electrónico" autocomplete="email">
-          <button class="btn pink" type="submit">Suscribirme</button>
-        </form>
-        <div class="msg" id="msg" role="status"></div>
-        <div class="soc">
-          <a href="https://www.facebook.com/%C3%93ptica-City-107521397624082/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
-          <a href="https://www.instagram.com/opticacitycl/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.500" cy="6.500" r=".6"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><h4>Óptica City</h4><a href="#nosotros">Quiénes somos</a><a href="#contacto">Contacto</a><a href="#productos">Productos</a></div>
+      <div><h4>Óptica City</h4><a href={`${import.meta.env.BASE_URL}nosotros/`}>Quiénes somos</a><a href="#contacto">Contacto</a><a href="#productos">Productos</a></div>
       <div><h4>Ayuda</h4><a href="#configurador">Cómo hacer tu pedido</a><a href="#configurador">Tu receta</a><a href="#configurador">Distancia pupilar (DP)</a><a href="#cristales">Tipos de cristales</a></div>
       <div id="contacto"><h4>Visítanos</h4><p>Lincoyan 368</p><p>Concepción, Chile</p><p>+56 9 4160 3654</p></div>
       <div><h4>Contacto</h4><a href="https://wa.me/56941603654" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.instagram.com/opticacitycl/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/%C3%93ptica-City-107521397624082/" target="_blank" rel="noopener noreferrer">Facebook</a></div>

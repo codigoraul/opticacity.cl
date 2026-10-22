@@ -11,8 +11,7 @@
     {t:'Anteojos',s:['Todos los anteojos','Mujer','Hombre','En oferta','Anteojos recientes']},
     {t:'Anteojos de sol',s:['Todos','Mujer','Hombre','Graduados']},
     {t:'Cristales',s:['Monofocales','Bifocales','Progresivos','Filtro luz azul','Fotocromáticos']},
-    {t:'Contactología',a:'#contacto'},
-    {t:'Nosotros',a:'#nosotros'}
+    {t:'Nosotros',a:B+'nosotros/'}
   ];
   $('#nav').innerHTML=menu.map(function(m){
     if(m.a)return '<li><a href="'+m.a+'">'+m.t+'</a></li>';
@@ -25,7 +24,7 @@
   var slides=[
     {k:'hero1',side:'right',pos:'50% 30%',alt:'Mujer sonriendo con anteojos de armazón transparente',lab:'Nueva temporada',h:'Mira el mundo con tu propio estilo',p:'Armazones livianos, cristales a tu medida y atención de un Tecnólogo Médico Optómetra.',c1:'Ver anteojos',c2:'Personalizar'},
     {k:'hero2',side:'left',pos:'50% 22%',alt:'Hombre con anteojos de armazón negro frente a un fondo turquesa',lab:'Colección hombre',h:'Líneas limpias, presencia de sobra',p:'Modelos exclusivos para hombre, desde clásicos hasta formas más atrevidas.',c1:'Ver hombre',c2:'Cristales'},
-    {k:'hero3',side:'left',pos:'50% 35%',alt:'Mujer con anteojos de sol de armazón carey bajo el sol',lab:'Anteojos de sol',h:'Luz de verano, cuida tu mirada',p:'Anteojos de sol con protección y estilo. También con tu receta.',c1:'Ver anteojos de sol',c2:'Más información'}
+    {k:'hero3',side:'left',pos:'80% 30%',alt:'Mujer sonriendo con anteojos ópticos de armazón redondo',lab:'Atención visual',h:'Cuida tu visión con atención profesional',p:'Examen visual con Tecnólogo Médico Optómetra, receta y lentes ópticos en un solo lugar.',c1:'Ver anteojos',c2:'Más información'}
   ];
   $('#slides').innerHTML=slides.map(function(s,i){
     return '<div class="slide'+(s.side==='right'?' right':'')+(i===0?' on':'')+'" role="group" aria-roledescription="diapositiva" aria-label="'+(i+1)+' de '+slides.length+'"'+(i?' inert':'')+'>'+
@@ -83,9 +82,8 @@
     if(e.target.closest('[data-add]')){var b=$('#badge');b.hidden=false;b.textContent=(+b.textContent||0)+1}
   });
 
-  /* banda y novedades */
+  /* banda */
   $('#bandImg').src=IMG.tienda1;
-  $('#newsImg').src=IMG.hero3;
 
   /* cristales */
   var lens=[
@@ -99,9 +97,6 @@
     return '<a class="lc" href="#configurador"><span class="orb" style="background:'+l.bg+'"></span><h3>'+l.n+'</h3><p>'+l.d+'</p></a>';
   }).join('');
 
-  /* galería */
-  var gal=[['g1','Mujer con anteojos mirando por una ventana'],['g2','Mujer con anteojos en una calle de ciudad'],['g4','Mujer mayor ajustándose los anteojos'],['tienda2','Hombre con anteojos de armazón fino'],['hero2','Hombre con anteojos frente a un fondo turquesa'],['mujer','Mujer sonriendo con anteojos transparentes']];
-  $('#gal').innerHTML=gal.map(function(g){return '<a href="https://www.instagram.com/opticacitycl/" target="_blank" rel="noopener noreferrer"><img src="'+IMG[g[0]]+'" alt="'+g[1]+'" loading="lazy"></a>'}).join('');
 
   /* animaciones al hacer scroll: títulos palabra por palabra, bloques que suben e imágenes que se descubren */
   if(!reduce&&'IntersectionObserver' in window){
@@ -119,11 +114,4 @@
     });
     document.querySelectorAll('.band .pic,.news .pic').forEach(function(el){el.setAttribute('data-rv','img');io.observe(el)});
   }
-
-  /* novedades: valida el formato; esta muestra no envía correos */
-  $('#nl').addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=$('#mail').value.trim();
-    $('#msg').textContent=/^\S+@\S+\.\S+$/.test(v)?'Correo válido. En esta muestra no se envían suscripciones.':'Escribe un correo válido, por ejemplo nombre@correo.cl.';
-  });
 })();

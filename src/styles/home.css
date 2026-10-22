@@ -165,14 +165,6 @@ h1,h2,h3,h4{margin:0;font-weight:300;text-wrap:balance;letter-spacing:-.02em}
 .lc p{margin:0;font-size:14px;color:var(--muted);line-height:1.45}
 
 /* galería */
-.gal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
-@media (max-width:1000px){.gal{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:560px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.gal a{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:var(--soft)}
-.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
-.gal a:hover img{transform:scale(1.07)}
-.gal a::after{content:"@opticacitycl";position:absolute;inset:auto 0 0 0;padding:14px;background:linear-gradient(0deg,rgba(6,22,52,.7),transparent);color:#fff;font-size:13px;letter-spacing:.08em;opacity:0;transition:opacity .3s}
-.gal a:hover::after,.gal a:focus-visible::after{opacity:1}
 .center{display:flex;justify-content:center;margin-top:32px}
 
 /* confianza */
@@ -328,3 +320,12 @@ html.hdr-azul .ann{background:var(--azul-claro);color:#fff}
 .btn.navy{background:#1F193F;color:#fff;border-color:#1F193F}
 .btn.navy:hover{background:transparent;color:#1F193F}
 @media (max-width:860px){.promo{grid-template-columns:minmax(0,1fr)}.promo .pic{justify-content:center}.promo .pic{padding-right:0}.promo .arco{width:min(78%,380px)}}
+
+/* Página Nosotros */
+.about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,88px);align-items:center;padding-block:clamp(56px,8vw,112px)}
+.about h1{font-size:clamp(34px,4.4vw,60px);line-height:1.05;font-weight:300;margin:12px 0 22px}
+.about p{margin:0 0 18px;color:var(--muted);font-weight:300;font-size:19px;line-height:1.6;max-width:56ch}
+.about .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.about .where{margin:22px 0 0;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text)}
+.about .pic img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:60% 50%;border-radius:220px 220px 0 0}
+@media (max-width:860px){.about{grid-template-columns:minmax(0,1fr)}.about .pic{order:-1}.about .pic img{aspect-ratio:1/1;border-radius:160px 160px 0 0;max-width:420px;margin-inline:auto}}

@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/home.css';
+const base = import.meta.env.BASE_URL;
+const menu = [
+  { t: 'Anteojos', s: ['Todos los anteojos', 'Mujer', 'Hombre', 'En oferta', 'Anteojos recientes'] },
+  { t: 'Anteojos de sol', s: ['Todos', 'Mujer', 'Hombre', 'Graduados'] },
+  { t: 'Cristales', s: ['Monofocales', 'Bifocales', 'Progresivos', 'Filtro luz azul', 'Fotocromáticos'] },
+  { t: 'Nosotros', a: `${base}nosotros/` },
+];
+---
+<Base title="Nosotros · Óptica City">
+<div id="app">
+<div class="ann"><div class="wrap"><span>Atención visual con Tecnólogo Médico Optómetra · Lincoyan 368, Concepción</span><a href="https://wa.me/56941603654" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href={import.meta.env.BASE_URL} aria-label="Óptica City, inicio"><img src={`${import.meta.env.BASE_URL}img/logo-opticacity.png`} alt="Óptica City" width="392" height="313"></a>
+    <ul class="nav" id="nav">
+      {menu.map((m) => m.a ? <li><a href={m.a}>{m.t}</a></li> : <li><button type="button" aria-haspopup="true">{m.t}</button><div class="panel">{m.s.map((x) => <a href={`${base}#productos`}>{x}</a>)}</div></li>)}
+    </ul>
+    <div class="tools">
+      <button class="ib" type="button" aria-label="Buscar"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+      <button class="ib" type="button" aria-label="Mi cuenta"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button>
+      <button class="ib" type="button" aria-label="Lista de deseos"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+      <button class="ib" type="button" aria-label="Carrito"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" id="badge" hidden>0</span></button>
+      <button class="ib menu" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap about glow soft" aria-label="Sobre Óptica City">
+    <div class="tx">
+      <span class="label">Nosotros</span>
+      <h1>Anteojos con estilo y atención profesional</h1>
+      <p>Nuestro equipo está formado por un Tecnólogo Médico Optómetra que entrega atención visual y óptica, con especialidad en contactología, y un equipo de ventas con amplia experiencia. Detrás de todo está su fundadora, que hizo posible este sueño y sigue aprendiendo junto con los cambios tecnológicos del rubro.</p>
+      <div class="row">
+        <a class="btn pink" href="https://wa.me/56941603654" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
+        <a class="btn line" href={`${base}#productos`}>Ver anteojos</a>
+      </div>
+      <p class="where">Lincoyan 368, Concepción</p>
+    </div>
+    <div class="pic"><img src={`${base}img/tienda1.jpg`} alt="Mujer mirando una vitrina de armazones en la óptica" width="1200" height="1500" loading="eager" /></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><h4>Óptica City</h4><a href={`${base}nosotros/`}>Quiénes somos</a><a href={`${base}#contacto`}>Contacto</a><a href={`${base}#productos`}>Productos</a></div>
+      <div><h4>Ayuda</h4><a href={`${base}#configurador`}>Cómo hacer tu pedido</a><a href={`${base}#configurador`}>Tu receta</a><a href={`${base}#configurador`}>Distancia pupilar (DP)</a><a href={`${base}#cristales`}>Tipos de cristales</a></div>
+      <div><h4>Visítanos</h4><p>Lincoyan 368</p><p>Concepción, Chile</p><p>+56 9 4160 3654</p></div>
+      <div><h4>Contacto</h4><a href="https://wa.me/56941603654" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.instagram.com/opticacitycl/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/%C3%93ptica-City-107521397624082/" target="_blank" rel="noopener noreferrer">Facebook</a></div>
+    </div>
+    <div class="legal"><span>© Óptica City. Todos los derechos reservados · Sitio diseñado por <a href="https://disenopaginas.cl" target="_blank" rel="noopener">diseñopaginas</a></span><span>Fotografías: <a href="https://www.freepik.com" target="_blank" rel="noopener noreferrer">Freepik</a></span></div>
+  </div>
+</footer>
+</div>
+<script>
+  (function () {
+    var $ = function (s) { return document.querySelector(s); };
+    $('#nav').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; var o = b.parentElement.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
+    $('#menuBtn').onclick = function () { var o = $('#nav').classList.toggle('open'); this.setAttribute('aria-expanded', o); };
+  })();
+</script>
+</Base>
