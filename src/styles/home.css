@@ -1,13 +1,9 @@
 /* Boutique óptica: fotografía a sangre, tipografía fina (Jost 300–500), slider principal, mosaico de categorías, carrusel de productos, banda de probador, cristales, galería, confianza, novedades y pie. */
-:root{
+:root{color-scheme:light;
   --bg:#ffffff; --soft:#f4f6fa; --ink:#131a2a; --muted:#586277; --line:#e2e6ee;
   --brand:#00418A; --brand-text:#00418A; --on-brand:#ffffff; --pink:#FF7DB8; --on-pink:#0B2A55; --deep:#0a2a5a; --on-deep:#ffffff;
   --font:'Jost','Helvetica Neue',Arial,sans-serif; --script:'Sacramento','Brush Script MT',cursive;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0d121c; --soft:#151c2a; --ink:#eef1f7; --muted:#a2acc0; --line:#27324a; --brand-text:#8db8ff; --deep:#102246; color-scheme:dark;}}
-:root[data-theme="dark"]{
-  --bg:#0d121c; --soft:#151c2a; --ink:#eef1f7; --muted:#a2acc0; --line:#27324a; --brand-text:#8db8ff; --deep:#102246; color-scheme:dark;}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;font-size:17px;line-height:1.6}
@@ -88,7 +84,7 @@ h1,h2,h3,h4{margin:0;font-weight:300;text-wrap:balance;letter-spacing:-.02em}
 .static .dot[aria-current="true"] i::after{animation:none}
 @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (max-width:760px){
-  .slider{height:600px}
+  .slider{height:680px}
   .shade,.slide.right .shade{background:linear-gradient(0deg,rgba(6,22,52,.9) 0%,rgba(6,22,52,.55) 42%,rgba(6,22,52,0) 72%)}
   .slide .wrap,.slide.right .wrap{align-items:flex-end;justify-content:flex-start;padding-bottom:92px}
   .copy p{font-size:16px}
@@ -200,7 +196,6 @@ html,body{overflow-x:clip}
 .glow::before{width:460px;height:460px;background:var(--brand);opacity:.11;top:-90px;left:-120px}
 .glow::after{width:420px;height:420px;background:var(--pink);opacity:.15;bottom:-90px;right:-100px}
 .glow.soft::before{opacity:.07}.glow.soft::after{opacity:.1}
-@media (prefers-color-scheme:dark){.glow::before{opacity:.2}.glow::after{opacity:.12}}
 @media (max-width:640px){.glow::before,.glow::after{width:300px;height:300px}}
 
 /* tarjetas de producto con foto real (WooCommerce) */
@@ -401,14 +396,5 @@ html.hdr-azul .ann{background:var(--azul-claro);color:#fff}
 .slide.k-hero1 .btn.line{color:#003EA1;border-color:#003EA1}
 .slide.k-hero1 .btn.line:hover{background:#003EA1;color:#fff}
 @media (max-width:760px){
-  .slide.k-hero1 .shade{background:linear-gradient(180deg,#ffc6de 0%,#ffdcea 28%,#fff0f6 48%,#fff 60%)}
-  .slide.k-hero1 .copy{color:#fff}
-  .slide.k-hero1 .copy .label{color:#ffb3d6}
-  .slide.k-hero1 .copy p{color:rgba(255,255,255,.9)}
-  .slide.k-hero1 .btn.pink{background:var(--pink);color:var(--on-pink)}
-  .slide.k-hero1 .btn.line{color:#fff;border-color:#fff}
-  .slide.k-hero1 .btn.line:hover{background:#fff;color:#001942}
-  .slider.is-light .arrow{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.12);color:#fff}
-  .slider.is-light .dot i{background:rgba(255,255,255,.35)}
-  .slider.is-light .dot[aria-current="true"] i::after{background:#fff}
+  .slide.k-hero1 .shade{background:linear-gradient(180deg,#ffc6de 0%,#ffd9e8 22%,#eee8fa 45%,#d8e2fd 70%,#cfdcfc 100%)}
 }
