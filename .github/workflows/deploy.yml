@@ -26,6 +26,7 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: /prueba
+          WP_URL: https://opticacity.cl/admin
 
       - name: Install lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
