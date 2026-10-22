@@ -4,7 +4,8 @@ import '../styles/home.css';
 import '../styles/footer.css';
 const base = import.meta.env.BASE_URL;
 const sucursales = [
-  { n: 'Óptica City', dir: 'Lincoyan 368, Concepción, Chile', tel: '+56 9 4160 3654', q: 'Opticacity@-36.8292052,-73.0525888', link: 'https://maps.app.goo.gl/LR4JTUZteNK2hdDp6' },
+  { n: 'Sucursal Lincoyan', dir: 'Lincoyan 368, Concepción, Chile', tel: '+56 9 4160 3654', q: 'Opticacity, Lincoyan 368, Concepción', ftid: '0x9669b5003c0e97e5:0xda1ecbf9defe884b', link: 'https://maps.app.goo.gl/LR4JTUZteNK2hdDp6' },
+  { n: 'Sucursal Barros Arana', dir: 'Barros Arana 449, Concepción, Chile', tel: '+56 9 4160 3654', q: 'Óptica City, Barros Arana 449, Concepción', ftid: '0x9669b5001c0e916d:0x3b40e203e59c5163', link: 'https://maps.app.goo.gl/wWynYZmzBksEbEtL9' },
 ];
 const menu = [
   { t: 'Anteojos', s: ['Todos los anteojos', 'Mujer', 'Hombre', 'En oferta', 'Anteojos recientes'] },
@@ -39,35 +40,34 @@ const menu = [
     <span class="label">Contacto</span>
     <h1>Escríbenos o visítanos</h1>
     <p class="lead">Agenda tu examen visual, consulta por tus lentes o resuelve cualquier duda. Te respondemos por WhatsApp.</p>
-    <div class="cgrid">
-      <form class="cform" id="cform" novalidate>
-        <label>Nombre<input name="nombre" type="text" autocomplete="name" required /></label>
-        <label>Teléfono<input name="tel" type="tel" autocomplete="tel" inputmode="tel" /></label>
-        <label>Correo<input name="mail" type="email" autocomplete="email" /></label>
-        <label>Motivo
-          <select name="motivo">
-            <option>Agendar examen visual</option>
-            <option>Cotizar anteojos</option>
-            <option>Consultar por cristales</option>
-            <option>Otro</option>
-          </select>
-        </label>
-        <label>Mensaje<textarea name="msg" rows="4"></textarea></label>
-        <button class="btn pink" type="submit">Enviar por WhatsApp</button>
-        <p class="cnote" id="cnote">Al enviar se abre WhatsApp con tu mensaje listo para mandar.</p>
-      </form>
-      <div class="cinfo">
-        {sucursales.map((x) => (
-          <article class="suc">
-            <h2>{x.n}</h2>
-            <p>{x.dir}</p>
-            <p><a href={`tel:${x.tel.replace(/\s/g, '')}`}>{x.tel}</a></p>
-            <iframe title={`Mapa: ${x.n}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${encodeURIComponent(x.q)}&z=17&output=embed`}></iframe>
-            <a class="btn line" href={x.link} target="_blank" rel="noopener noreferrer">Cómo llegar</a>
-          </article>
-        ))}
+    {sucursales.map((x) => (
+      <div class="cgrid">
+        <form class="cform" data-suc={x.n} novalidate>
+          <h2 class="chd">{x.n}</h2>
+          <label>Nombre<input name="nombre" type="text" autocomplete="name" required /></label>
+          <label>Teléfono<input name="tel" type="tel" autocomplete="tel" inputmode="tel" /></label>
+          <label>Correo<input name="mail" type="email" autocomplete="email" /></label>
+          <label>Motivo
+            <select name="motivo">
+              <option>Agendar examen visual</option>
+              <option>Cotizar anteojos</option>
+              <option>Consultar por cristales</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label>Mensaje<textarea name="msg" rows="4"></textarea></label>
+          <button class="btn pink" type="submit">Enviar por WhatsApp</button>
+          <p class="cnote">Al enviar se abre WhatsApp con tu mensaje listo para mandar.</p>
+        </form>
+        <article class="suc">
+          <h2>{x.n}</h2>
+          <p>{x.dir}</p>
+          <p><a href={`tel:${x.tel.replace(/\s/g, '')}`}>{x.tel}</a></p>
+          <iframe title={`Mapa: ${x.n}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${encodeURIComponent(x.q)}${x.ftid ? `&ftid=${x.ftid}` : ''}&z=17&output=embed`}></iframe>
+          <a class="btn line" href={x.link} target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+        </article>
       </div>
-    </div>
+    ))}
   </section>
 </main>
 
@@ -103,16 +103,17 @@ const menu = [
   })();
 </script>
 <script>
-  const f = document.getElementById('cform');
-  f.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const d = new FormData(f);
-    if (!String(d.get('nombre')).trim()) { f.nombre.focus(); return; }
-    const t = ['Hola, soy ' + String(d.get('nombre')).trim() + '.', 'Motivo: ' + d.get('motivo') + '.'];
-    if (String(d.get('msg')).trim()) t.push(String(d.get('msg')).trim());
-    if (String(d.get('tel')).trim()) t.push('Mi teléfono: ' + String(d.get('tel')).trim());
-    if (String(d.get('mail')).trim()) t.push('Mi correo: ' + String(d.get('mail')).trim());
-    window.open('https://wa.me/56941603654?text=' + encodeURIComponent(t.join('\n')), '_blank', 'noopener');
+  document.querySelectorAll('.cform').forEach((f) => {
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(f);
+      if (!String(d.get('nombre')).trim()) { f.nombre.focus(); return; }
+      const t = ['Hola, soy ' + String(d.get('nombre')).trim() + '.', 'Sucursal: ' + f.dataset.suc + '.', 'Motivo: ' + d.get('motivo') + '.'];
+      if (String(d.get('msg')).trim()) t.push(String(d.get('msg')).trim());
+      if (String(d.get('tel')).trim()) t.push('Mi teléfono: ' + String(d.get('tel')).trim());
+      if (String(d.get('mail')).trim()) t.push('Mi correo: ' + String(d.get('mail')).trim());
+      window.open('https://wa.me/56941603654?text=' + encodeURIComponent(t.join('\n')), '_blank', 'noopener');
+    });
   });
 </script>
 </Base>

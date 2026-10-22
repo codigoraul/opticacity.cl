@@ -1,6 +1,6 @@
 (function(){
   var B=import.meta.env.BASE_URL;
-  var IMG={"g1": B+"img/g1.jpg", "g2": B+"img/g2.jpg", "g3": B+"img/g3.jpg", "g4": B+"img/g4.jpg", "hero1": B+"img/hero1.jpg", "hero2": B+"img/hero2.jpg", "hero3": B+"img/hero3.jpg", "hombre": B+"img/hombre.jpg", "mujer": B+"img/mujer.jpg", "sol": B+"img/sol.jpg", "tienda1": B+"img/tienda1.jpg", "tienda2": B+"img/tienda2.jpg"};
+  var IMG={"g1": B+"img/g1.jpg", "g2": B+"img/g2.jpg", "g3": B+"img/g3.jpg", "g4": B+"img/g4.jpg", "hero1": B+"img/hero1.webp", "hero2": B+"img/hero2.jpg", "hero3": B+"img/hero3.jpg", "hombre": B+"img/hombre.jpg", "mujer": B+"img/mujer.jpg", "sol": B+"img/sol.jpg", "tienda1": B+"img/tienda1.jpg", "tienda2": B+"img/tienda2.jpg"};
   var $=function(s){return document.querySelector(s)};
   var esc=function(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')};
   var words=function(t){return t.trim().split(/\s+/).map(function(w,i){return '<span class="w"><span style="--i:'+i+'">'+esc(w)+'</span></span>'}).join(' ')};
@@ -23,21 +23,22 @@
 
   /* slider */
   var slides=[
-    {k:'hero1',side:'right',pos:'50% 30%',alt:'Mujer sonriendo con anteojos de armazón transparente',lab:'Nueva temporada',h:'Mira el mundo con tu propio estilo',p:'Armazones livianos, cristales a tu medida y atención de un Tecnólogo Médico Optómetra.',c1:'Ver anteojos',c2:'Personalizar'},
+    {k:'hero1',light:true,m:'hero1-m.webp',side:'left',pos:'100% 30%',alt:'Mujer sonriendo con anteojos redondos haciendo el gesto de ok',lab:'Nueva temporada',h:'Mira el mundo con tu propio estilo',p:'Armazones livianos, cristales a tu medida y atención de un Tecnólogo Médico Optómetra.',c1:'Ver anteojos',c2:'Personalizar'},
     {k:'hero2',side:'left',pos:'50% 22%',alt:'Hombre con anteojos de armazón negro frente a un fondo turquesa',lab:'Colección hombre',h:'Líneas limpias, presencia de sobra',p:'Modelos exclusivos para hombre, desde clásicos hasta formas más atrevidas.',c1:'Ver hombre',c2:'Cristales'},
     {k:'hero3',side:'left',pos:'80% 30%',alt:'Mujer sonriendo con anteojos ópticos de armazón redondo',lab:'Atención visual',h:'Cuida tu visión con atención profesional',p:'Examen visual con Tecnólogo Médico Optómetra, receta y lentes ópticos en un solo lugar.',c1:'Ver anteojos',c2:'Más información'}
   ];
   $('#slides').innerHTML=slides.map(function(s,i){
-    return '<div class="slide'+(s.side==='right'?' right':'')+(i===0?' on':'')+'" role="group" aria-roledescription="diapositiva" aria-label="'+(i+1)+' de '+slides.length+'"'+(i?' inert':'')+'>'+
-      '<img src="'+IMG[s.k]+'" alt="'+s.alt+'" style="object-position:'+s.pos+'"'+(i?' loading="lazy"':'')+'><div class="shade"></div>'+
+    return '<div class="slide k-'+s.k+(s.side==='right'?' right':'')+(s.light?' light':'')+(i===0?' on':'')+'" role="group" aria-roledescription="diapositiva" aria-label="'+(i+1)+' de '+slides.length+'"'+(i?' inert':'')+'>'+
+      (s.m?'<picture><source media="(max-width:760px)" srcset="'+B+'img/'+s.m+'">':'')+'<img src="'+IMG[s.k]+'" alt="'+s.alt+'" style="object-position:'+s.pos+'"'+(i?' loading="lazy"':'')+'>'+(s.m?'</picture>':'')+'<div class="shade"></div>'+
       '<div class="wrap"><div class="copy"><span class="label">'+s.lab+'</span><h2>'+words(s.h)+'</h2><p>'+s.p+'</p><div class="row"><a class="btn pink" href="#productos">'+s.c1+'</a><a class="btn line" href="#configurador">'+s.c2+'</a></div></div></div></div>';
   }).join('');
   $('#dots').innerHTML=slides.map(function(s,i){return '<button class="dot" type="button" aria-label="Ir a la diapositiva '+(i+1)+'" data-i="'+i+'"><i></i></button>'}).join('');
   var cur=0,timer=null,paused=false,DUR=6500;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var sl=$('#slider');
+  var sl=$('#slider');sl.classList.toggle('is-light',!!slides[0].light);
   function show(n){
     cur=(n+slides.length)%slides.length;
+    sl.classList.toggle('is-light',!!slides[cur].light);
     var els=document.querySelectorAll('.slide');
     els.forEach(function(e,i){var on=i===cur;e.classList.toggle('on',on);if(on)e.removeAttribute('inert');else e.setAttribute('inert','')});
     document.querySelectorAll('.dot').forEach(function(d,i){
