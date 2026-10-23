@@ -398,3 +398,16 @@ html.hdr-azul .ann{background:var(--azul-claro);color:#fff}
 @media (max-width:760px){
   .slide.k-hero1 .shade{background:linear-gradient(180deg,#ffc6de 0%,#ffd9e8 22%,#eee8fa 45%,#d8e2fd 70%,#cfdcfc 100%)}
 }
+
+/* móvil: barra superior solo con redes; cabecera con logo más grande y 2 íconos (carrito y menú) */
+@media (max-width:759px){
+  .ann{padding:0}
+  .ann>span:not(.ann-soc),.ann>a,.ann .wrap>span:not(.ann-soc),.ann .wrap>a{display:none}
+  .ann .wrap{min-height:46px;padding-block:0;gap:0}
+  .ann{min-height:46px;justify-content:center}
+  .ann .ann-soc{gap:14px}
+  .ann .ann-soc a{width:38px;height:38px}
+  .tools .ib[aria-label="Buscar"],.tools .ib[aria-label="Mi cuenta"],.tools .ib[aria-label="Lista de deseos"]{display:none}
+  .top .wrap{min-height:96px}
+  .logo img{height:88px}
+}

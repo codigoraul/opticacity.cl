@@ -187,3 +187,16 @@ html.hdr-azul .ann{background:var(--azul-claro);color:#fff}
 .ann .ann-soc a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;text-decoration:none;color:inherit;transition:background .2s}
 .ann .ann-soc a:hover{background:rgba(255,255,255,.18)}
 .ann{display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:center;align-items:center}
+
+/* móvil: barra superior solo con redes; cabecera con logo más grande y 2 íconos (carrito y menú) */
+@media (max-width:759px){
+  .ann{padding:0}
+  .ann>span:not(.ann-soc),.ann>a,.ann .wrap>span:not(.ann-soc),.ann .wrap>a{display:none}
+  .ann .wrap{min-height:46px;padding-block:0;gap:0}
+  .ann{min-height:46px;justify-content:center}
+  .ann .ann-soc{gap:14px}
+  .ann .ann-soc a{width:38px;height:38px}
+  .tools .ib[aria-label="Buscar"],.tools .ib[aria-label="Mi cuenta"],.tools .ib[aria-label="Lista de deseos"]{display:none}
+  .top .wrap{min-height:96px}
+  .logo img{height:88px}
+}
