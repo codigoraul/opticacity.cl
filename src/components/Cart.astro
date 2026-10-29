@@ -1,0 +1,18 @@
+---
+// Carrito lateral compartido por todas las páginas. El estado vive en localStorage (scripts/cart.js).
+import '../styles/cart.css';
+const wp = (import.meta.env.WP_URL ?? '').replace(/\/$/, '');
+const wa = 'https://wa.me/56941603654';
+---
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="Carrito" inert data-wp={wp} data-wa={wa}>
+  <header><h2>Tu carrito</h2><button class="ib" type="button" id="closeCart" aria-label="Cerrar carrito"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="items" id="items"></div>
+  <footer>
+    <div class="tot"><span>Subtotal</span><b id="sub">$0</b></div>
+    <button class="btn" type="button" id="pay">Ir a pagar</button>
+    <p class="cnote" id="payNote">Pagas con Webpay (tarjetas de débito y crédito) en una página segura.</p>
+  </footer>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<script>import '../scripts/cart.js';</script>

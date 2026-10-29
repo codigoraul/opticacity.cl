@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import '../styles/home.css';
 import '../styles/footer.css';
+import Cart from '../components/Cart.astro';
 const base = import.meta.env.BASE_URL;
 const sucursales = [
   { n: 'Sucursal Lincoyan', dir: 'Lincoyan 368, Concepción, Chile', tel: '+56 9 4160 3654', q: 'Opticacity, Lincoyan 368, Concepción', ftid: '0x9669b5003c0e97e5:0xda1ecbf9defe884b', link: 'https://maps.app.goo.gl/LR4JTUZteNK2hdDp6' },
@@ -116,4 +117,5 @@ const menu = [
     });
   });
 </script>
+<Cart />
 </Base>

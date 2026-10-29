@@ -12,6 +12,7 @@ export interface Producto {
   usos: string[];
   tipos: string[];
   colorImages?: Record<string, string[]>; // fotos por color (variaciones de WooCommerce)
+  variations?: { id: number; attrs: Record<string, string> }[]; // variaciones de WooCommerce: id y atributos (slug)
   muestra?: boolean; // true = fotos de muestra (sin fotos reales en WordPress)
 }
 

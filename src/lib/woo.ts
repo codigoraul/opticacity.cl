@@ -55,6 +55,7 @@ function mapear(p: StoreProduct): Producto {
     sizes: terms(p, 'pa_material'),
     usos: terms(p, 'pa_uso-cristal'),
     tipos: terms(p, 'pa_tipo-cristal'),
+    variations: (p.variations ?? []).map((v) => ({ id: v.id, attrs: Object.fromEntries(v.attributes.map((a) => [a.name.toLowerCase(), a.value])) })),
   };
 }
 
@@ -77,7 +78,7 @@ async function cargar() {
       const res = await fetch(`${WP_URL}/wp-json/wc/store/v1/products?per_page=100&page=${page}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const lote = (await res.json()) as StoreProduct[];
-      for (const raw of lote) items.push({ ...mapear(raw), colorImages: await fotosPorColor(raw) });
+      for (const raw of lote) if (!raw.categories?.some((c) => c.name === 'Cristales')) items.push({ ...mapear(raw), colorImages: await fotosPorColor(raw) });
       if (lote.length < 100) break;
     }
     if (!items.length) throw new Error('sin productos');
@@ -90,3 +91,27 @@ async function cargar() {
 
 /** Productos de WooCommerce (Store API pública). Una sola lectura por compilación. */
 export const getProductos = () => (cache ??= cargar());
+
+export interface Complemento { id: number; price: number }
+
+/**
+ * Cristales como productos de WooCommerce (categoría "Cristales"): el precio real vive allá.
+ * Devuelve SKU -> { id, price }. Si WordPress no responde, queda vacío y la web usa src/data/cristales.ts.
+ */
+let cacheC: Promise<Record<string, Complemento>> | undefined;
+export const getComplementos = () =>
+  (cacheC ??= (async () => {
+    const out: Record<string, Complemento> = {};
+    if (!WP_URL) return out;
+    try {
+      const res = await fetch(`${WP_URL}/wp-json/wc/store/v1/products?per_page=100&category=cristales`);
+      if (!res.ok) return out;
+      for (const p of (await res.json()) as StoreProduct[]) {
+        const minor = p.prices?.currency_minor_unit ?? 0;
+        if (p.sku) out[p.sku] = { id: p.id, price: Number(p.prices?.price ?? 0) / 10 ** minor };
+      }
+    } catch (e) {
+      console.warn(`[woo] No se pudieron leer los cristales: ${(e as Error).message}`);
+    }
+    return out;
+  })());

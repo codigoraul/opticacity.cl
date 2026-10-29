@@ -1,0 +1,27 @@
+/* carrito lateral compartido */
+.badge{position:absolute;top:4px;right:2px;min-width:17px;height:17px;padding-inline:4px;border-radius:9px;background:var(--pink);color:var(--on-pink);font-size:11px;font-weight:500;display:grid;place-items:center}
+.badge[hidden]{display:none}
+.scrim{position:fixed;inset:0;background:rgba(8,16,36,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.cart{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--bg);z-index:70;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-20px 0 50px -24px rgba(0,0,0,.4)}
+body.open .scrim{opacity:1;pointer-events:auto}
+body.open .cart{transform:none}
+.cart header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}
+.cart h2{font-size:22px}
+.cart .items{flex:1;overflow:auto;padding:18px 22px}
+.item{display:grid;grid-template-columns:84px 1fr;gap:14px;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.item img{width:84px;height:104px;object-fit:cover;background:var(--soft)}
+.item b{font-weight:500}
+.item ul{margin:6px 0 0;padding:0;list-style:none;font-size:13px;color:var(--muted)}
+.item .pr{display:flex;justify-content:space-between;margin-top:8px;font-size:15px}
+.item button.rm{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px;padding:6px 0;min-height:32px}
+.cart footer{padding:18px 22px;border-top:1px solid var(--line)}
+.cart footer .tot{display:flex;justify-content:space-between;margin-bottom:12px;font-size:16px}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--deep);color:#fff;padding:12px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:all .25s;z-index:80;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.cart footer .btn{width:100%}
+.cart footer .btn[disabled]{opacity:.6;pointer-events:none}
+.cart .cnote{margin:10px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+.cart .item .add{color:var(--muted)}
+.cart .ib{position:relative;width:44px;height:44px;border:0;background:none;display:grid;place-items:center;border-radius:50%;color:inherit}
+body.open{overflow:hidden}

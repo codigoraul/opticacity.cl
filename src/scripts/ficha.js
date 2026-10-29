@@ -1,3 +1,4 @@
+import * as Cart from './cart.js';
 var B=import.meta.env.BASE_URL;
 var P=JSON.parse(document.getElementById('product-data').textContent);
 var IMG={"g3":B+"img/g3.jpg","hero1":B+"img/hero1.jpg","hero2":B+"img/hero2.jpg","mujer":B+"img/mujer.jpg","tienda1":B+"img/tienda1.jpg","tienda2":B+"img/tienda2.jpg","hombre":B+"img/hombre.jpg"};
@@ -36,11 +37,10 @@ function opts(list,def){return (list&&list.length?list:def)}
 function ordenar(list,ref){var k=Object.keys(ref||{});return list.slice().sort(function(a,b){var i=k.indexOf(a),j=k.indexOf(b);return (i<0?99:i)-(j<0?99:j)})}
 var COLORS=opts(P.colors,['Negro']).map(function(n,i){var f=FALL[i%FALL.length];return {id:slug(n),n:n,c:SWATCH[n.toLowerCase()]||'#9aa3b6',imgs:f.imgs,pos:f.pos}});
 var SIZES=opts(P.sizes,['Acetato']).map(function(n){return {id:slug(n),n:n}});
-var LENS=ordenar(opts(P.usos,['Solo armazón','Monofocal']),CR.usos).map(function(n){var c=CR.usos[n]||{d:'',p:0};return {id:slug(n),n:n,d:c.d,p:c.p}});
-var GLASS=ordenar(opts(P.tipos,['Transparente']),CR.tipos).map(function(n){var c=CR.tipos[n]||{d:'',p:0};return {id:slug(n),n:n,d:c.d,p:c.p}});
+var LENS=ordenar(opts(P.usos,['Solo armazón','Monofocal']),CR.usos).map(function(n){var c=CR.usos[n]||{d:'',p:0};return {id:slug(n),n:n,d:c.d,p:c.p,wc:c.wc||null}});
+var GLASS=ordenar(opts(P.tipos,['Transparente']),CR.tipos).map(function(n){var c=CR.tipos[n]||{d:'',p:0};return {id:slug(n),n:n,d:c.d,p:c.p,wc:c.wc||null}});
 
 var S={color:COLORS[0].id,size:SIZES[0].id,lens:(LENS.filter(function(x){return x.id==='monofocal'})[0]||LENS[0]).id,glass:GLASS[0].id,img:0};
-var cart=[];
 
 function build(){
   $('#colors').innerHTML=COLORS.map(function(c){return '<label title="'+c.n+'"><input type="radio" name="color" value="'+c.id+'"'+(c.id===S.color?' checked':'')+' aria-label="'+c.n+'"><span style="background:'+c.c+'"></span></label>'}).join('');
@@ -80,21 +80,7 @@ function setMain(i){
   setTimeout(function(){var it=imgsFor(c)[i];m.src=it.src;m.style.objectPosition=it.p;m.classList.remove('fade')},180);
   document.querySelectorAll('#thumbs button[data-i]').forEach(function(b){b.setAttribute('aria-current',+b.dataset.i===i)});
 }
-function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('on')},2600)}
-function drawCart(){
-  var n=cart.length;$('#badge').hidden=!n;$('#badge').textContent=n;
-  $('#items').innerHTML=n?'':'<p class="empty">Tu carrito está vacío.</p>';
-  var sub=0;
-  cart.forEach(function(it,i){
-    sub+=it.total;
-    var d=el('<div class="item"><img src="'+it.img+'" alt=""><div><b>'+it.name+'</b><ul>'+it.lines.map(function(l){return '<li>'+l+'</li>'}).join('')+'</ul><div class="pr"><span>1 unidad</span><b>'+fmt(it.total)+'</b></div><button class="rm" type="button" data-i="'+i+'">Quitar</button></div></div>');
-    $('#items').appendChild(d);
-  });
-  $('#sub').textContent=fmt(sub);
-}
-function openCart(o){document.body.classList.toggle('open',o);$('#cart').inert=!o;if(o)$('#closeCart').focus();else $('#cartBtn').focus()}
-
-build();gallery(true);render();drawCart();
+build();gallery(true);render();
 
 document.addEventListener('change',function(e){
   var t=e.target,n=t.name;
@@ -108,17 +94,18 @@ document.addEventListener('click',function(e){
   var b=e.target.closest('button');if(!b)return;
   if(b.closest('#thumbs')&&b.dataset.i!==undefined)setMain(+b.dataset.i);
   else if(b.id==='add'){
-    var c=by(COLORS,S.color);
+    var c=by(COLORS,S.color),sz=by(SIZES,S.size),l=by(LENS,S.lens),g=by(GLASS,S.glass);
+    var solo=S.lens==='solo-armazon';
     var lines=cfgLines().slice(1).map(function(x){return x[0]});
-    if(S.lens!=='solo-armazon')lines.push('Receta: se envía por WhatsApp');
-    cart.push({name:P.name,total:total(),lines:lines,img:imgsFor(c)[0].src});
-    drawCart();toast('Agregado al carrito');openCart(true);
+    if(!solo)lines.push('Receta: se envía por WhatsApp');
+    /* variación de WooCommerce según color y material */
+    var v=(P.variations||[]).filter(function(x){return x.attrs.color===c.id&&x.attrs.material===sz.id})[0];
+    var wc=v?{id:v.id,variation:[{attribute:'Color',value:c.id},{attribute:'Material',value:sz.id}]}:null;
+    /* cristales: productos de WooCommerce con su propio precio */
+    var extras=[],ok=true;
+    if(l.p>0){if(l.wc)extras.push({id:l.wc,name:'Cristal '+l.n});else ok=false}
+    if(!solo&&g.p>0){if(g.wc)extras.push({id:g.wc,name:'Cristal '+g.n});else ok=false}
+    Cart.add({name:P.name,total:total(),lines:lines,img:imgsFor(c)[0].src,wc:wc,extras:extras,extrasOk:ok});
   }
-  else if(b.id==='cartBtn')openCart(true);
-  else if(b.id==='closeCart')openCart(false);
-  else if(b.classList.contains('rm')){cart.splice(+b.dataset.i,1);drawCart()}
   else if(b.id==='wa')window.open('https://wa.me/56941603654?text='+encodeURIComponent('Hola, quiero consultar por el '+P.name+': '+cfgLines().slice(1).map(function(x){return x[0]}).join(', ')+'. Total referencial '+fmt(total())),'_blank','noopener');
-  else if(b.id==='pay')toast('Demostración: aquí continúa el checkout');
 });
-$('#scrim').addEventListener('click',function(){openCart(false)});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('open'))openCart(false)});

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import '../styles/home.css';
 import '../styles/footer.css';
+import Cart from '../components/Cart.astro';
 import { getProductos } from '../lib/woo';
 import { clp } from '../data/productos';
 
@@ -146,4 +147,5 @@ const destacados = items.slice(0, 12);
 </footer>
 </div>
 <script>import '../scripts/home.js';</script>
+<Cart />
 </Base>
